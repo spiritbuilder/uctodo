@@ -4,7 +4,26 @@
 //
 // import { User } from 'path/to/interfaces';
 
-export type User = {
-  id: number
-  name: string
+declare global {
+  interface Window {
+    localStorage: any;
+  }
 }
+
+export type User = {
+  id: number;
+  name: string;
+};
+
+export type Todo = {
+  color: "pirp"|"grin"|"";
+  description: string;
+  status: "open" | "completed";
+  todoId?:number
+};
+
+
+
+export type Filter = "all" | "grin"|"pirp"
+
+

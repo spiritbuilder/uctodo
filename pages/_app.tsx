@@ -1,6 +1,14 @@
 import "../styles/globals.css";
-import IndexPage from ".";
+import { Provider } from "react-redux";
+import type { AppProps } from "next/app";
+import store from "../redux/store";
 
-const App = () => IndexPage
- 
-export default App
+function MyApp({ Component, pageProps }) {
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  );
+}
+
+export default MyApp;
