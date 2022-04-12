@@ -13,8 +13,8 @@ const IndexPage = () => {
   let todos = useSelector((state: RootState) => state.todos);
   useEffect(() => {
     let storedTodos = JSON.parse(localStorage.getItem("todos"));
-
-    if (typeof storedTodos !== "string") {
+    console.log("stored todos", storedTodos);
+    if (storedTodos !== null) {
       dispatch(initializeTodos(storedTodos));
     } else {
       dispatch(initializeTodos([]));
@@ -35,27 +35,34 @@ const IndexPage = () => {
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
 
   const addTodoId = () => {
-    if (todos.length > 0) {
+    console.log(todos, "todos ooo");
+    if (todos && todos.length > 0) {
+      console.log("I excetue");
       let td = [...todos];
       return td.map((todo, id) => {
         return { ...todo, todoId: id };
       });
+    } else {
+      return [];
     }
   };
 
   const filterfn = (str) => {
     let td = addTodoId();
-    if (str != "all") {
-      let ftd = [...td];
+    if (td.length > 0) {
+      if (str != "all") {
+        let ftd = [...td];
 
-      setFilteredTodos(ftd.filter((todo) => todo.color === str));
-    } else {
-      setFilteredTodos(td);
+        setFilteredTodos(ftd.filter((todo) => todo.color === str));
+      } else {
+        setFilteredTodos(td);
+      }
     }
   };
 
   useEffect(() => {
     filterfn(filter);
+    console.log(filteredTodos);
   }, [todos, filter]);
 
   const handleAdd = (color) => {
@@ -115,7 +122,7 @@ const IndexPage = () => {
           </span>
         </div>
         <div>
-          {filteredTodos &&
+          {filteredTodos.length > 0 &&
             filteredTodos.map((todo) => (
               <ListItem
                 key={`${todo.todoId + Math.random()}`}
