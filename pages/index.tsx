@@ -74,12 +74,12 @@ const IndexPage = () => {
 
   return (
     <div className="w-screen flex flex-col justify-center items-center p-4">
-      <div className="w-full sm:w-1/2  lg:w-3/5 xl:w-2/5">
-        <div className=" bg-tomat   text-white text-md p-3 rounded-t-3xl flex justify-center items-center">
+      <div className="w-full sm:w-3/5  lg:w-3/5 xl:w-2/5">
+        <div className=" bg-tomat   text-white text-md sm:text-lg p-4 sm:p-5 rounded-t-3xl flex justify-center items-center">
           <span> Today {formatdate()}</span>
         </div>
         <div className=" flex-wrap p-2 sm:p-6 flex sticky top-5 items-center justify-between bg-bgblack border-b-2   border-divider">
-          <span className=" text-tomat ">
+          <span className=" text-tomat text-xxs sm:text-base">
             {`${filter != "all" ? `Filtering and ` : ""} 
                 Showing ${filteredTodos?.length} task${
               filteredTodos?.length > 1 ? "s" : ""

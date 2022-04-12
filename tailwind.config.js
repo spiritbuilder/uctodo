@@ -6,10 +6,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        xxs: "0.65rem",
+      },
       spacing: {
         4.5: "18px",
         300: "330px",
-        3:"3px"
+        3: "3px",
       },
       screens: {
         xs: { max: "350px" },
